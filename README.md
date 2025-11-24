@@ -1,10 +1,10 @@
-# Weather Fetch
+# fast_free_weather
 
 A simple Python package to fetch weather data using the free Open-Meteo API (no API key required).
 
 ## Installation
 ```bash
-pip install free_weather
+pip install fast_free_weather
 ```
 
 ## Usage
@@ -17,6 +17,7 @@ weather = wf.get_weather("Dhaka")  # defaults to metric units
 print(weather["temperature"])
 print(weather["description"])
 ```
+Note: the PyPI package is `fast_free_weather`, but you import it as `weather_fetch`.
 
 ### Units
 - `metric` for Celsius (default)
