@@ -1,6 +1,6 @@
 # Weather Fetch
 
-A simple Python package to fetch weather data from the OpenWeatherMap API.
+A simple Python package to fetch weather data using the free Open-Meteo API (no API key required).
 
 ## Installation
 ```bash
@@ -11,7 +11,7 @@ pip install weather-fetch
 ```python
 from weather_fetch import WeatherFetch
 
-wf = WeatherFetch(api_key="YOUR_OPENWEATHERMAP_API_KEY")
+wf = WeatherFetch()  # no API key needed for Open-Meteo
 weather = wf.get_weather("Dhaka")  # defaults to metric units
 
 print(weather["temperature"])
@@ -21,7 +21,7 @@ print(weather["description"])
 ### Units
 - `metric` for Celsius (default)
 - `imperial` for Fahrenheit
-- `standard` for Kelvin
+- `standard` treated the same as metric
 
 ## Testing
 ```bash
@@ -33,5 +33,5 @@ pytest
 The tests mock the HTTP calls; no real API calls are made, so they run offline.
 
 ## Notes
-- The client uses a 10-second timeout and raises `ValueError` on request or parsing errors.
-- You need a valid OpenWeatherMap API key to fetch real data.
+- Uses a 10-second timeout and raises `ValueError` on request or parsing errors.
+- Relies on Open-Meteo geocoding to resolve city names to coordinates; ensure the city can be found.
