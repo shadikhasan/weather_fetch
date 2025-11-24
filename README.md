@@ -1,28 +1,32 @@
 # fast_free_weather
 
-A simple Python package to fetch weather data using the free Open-Meteo API (no API key required).
+Fetch current weather using the free Open-Meteo API (no API key required).
 
 ## Installation
 ```bash
 pip install fast_free_weather
 ```
 
-## Usage
+## Quickstart
 ```python
-from weather_fetch import WeatherFetch
+from weather_fetch import WeatherFetch  # import path stays weather_fetch
 
-wf = WeatherFetch()  # no API key needed for Open-Meteo
+wf = WeatherFetch()  # no API key needed
 weather = wf.get_weather("Dhaka")  # defaults to metric units
 
+print(weather["city"])
 print(weather["temperature"])
 print(weather["description"])
 ```
-Note: the PyPI package is `fast_free_weather`, but you import it as `weather_fetch`.
 
 ### Units
-- `metric` for Celsius (default)
-- `imperial` for Fahrenheit
-- `standard` treated the same as metric
+- `metric` (default): Celsius temps, km/h wind
+- `imperial`: Fahrenheit temps, mph wind
+- `standard`: treated as metric
+
+### Error handling
+- Raises `ValueError` on HTTP errors, JSON parsing issues, or unknown cities.
+- Uses a 10-second timeout by default; adjust via `wf.DEFAULT_TIMEOUT` if needed.
 
 ## Testing
 ```bash
@@ -30,9 +34,4 @@ python -m pip install -e .
 python -m pip install pytest
 pytest
 ```
-
-The tests mock the HTTP calls; no real API calls are made, so they run offline.
-
-## Notes
-- Uses a 10-second timeout and raises `ValueError` on request or parsing errors.
-- Relies on Open-Meteo geocoding to resolve city names to coordinates; ensure the city can be found.
+Tests mock HTTP calls, so they run offline.
