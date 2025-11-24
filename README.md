@@ -4,7 +4,7 @@ A simple Python package to fetch weather data using the free Open-Meteo API (no 
 
 ## Installation
 ```bash
-pip install weather-fetch
+pip install free_weather
 ```
 
 ## Usage
